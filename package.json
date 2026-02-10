@@ -1,8 +1,8 @@
 {
-  "name": "@catppuccin/tailwindcss",
+  "name": "@gruvbox/tailwindcss",
   "version": "1.0.0",
-  "description": "💨 Soothing pastel theme for TailwindCSS",
-  "author": "Catppuccin Org <releases@catppuccin.com>",
+  "description": "A bright theme with pastel 'retro groove' for TailwindCSS",
+  "author": "Birthday Boy",
   "license": "MIT",
   "engines": {
     "node": ">=22.0.0"

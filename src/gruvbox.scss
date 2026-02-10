@@ -1,0 +1,78 @@
+@use 'sass:color';
+@use 'sass:list';
+@use 'sass:map';
+
+@use "palette/gruvbox";
+
+$prefix: 'grv';
+
+@function isColor($color-name) {
+  $accents: (
+    "dark",
+    "light"
+  );
+  @return list.index($accents, $color-name) == null;
+}
+
+@mixin createThemePalette($theme) {
+  $background: "light";
+  $foreground: "dark";
+  $alt-index: 3;
+
+  @if $theme == "dark" {
+    $background: "dark";
+    $foreground: "light";
+    $alt-index: 1;
+  }
+
+  $i: 0;
+  @each $color-value in map.get(gruvbox.$palette, $background) {
+    --gruvbox-color-bg#{$i}: #{$color-value};
+    $i: $i + 1;
+  }
+
+  $i: 0;
+  @each $color-value in map.get(gruvbox.$palette, $foreground) {
+    --gruvbox-color-fg#{$i}: #{$color-value};
+    $i: $i + 1;
+  }
+
+  --gruvbox-color-bg: #{list.nth(map.get(gruvbox.$palette, $background), 1)};
+  --gruvbox-color-fg: #{list.nth(map.get(gruvbox.$palette, $foreground), 2)};
+
+  @each $color-name, $color-variants in gruvbox.$palette {
+    @if (isColor($color-name)) {
+      --gruvbox-color-#{$color-name}: #{list.nth($color-variants, 2)};
+      --gruvbox-color-#{$color-name}-alt: #{list.nth($color-variants, $alt-index)};
+    }
+  }
+}
+
+@theme inline {
+  @for $i from 0 through 4 {
+    --color-#{$prefix}-bg#{$i}: var(--gruvbox-color-bg#{$i});
+  }
+
+  @for $i from 0 through 4 {
+    --color-#{$prefix}-fg#{$i}: var(--gruvbox-color-fg#{$i});
+  }
+  --color-#{$prefix}-base: var(--gruvbox-color-bg);
+  --color-#{$prefix}-text: var(--gruvbox-color-fg);
+
+  @each $color-name in map.keys(gruvbox.$palette) {
+    @if (isColor($color-name)) {
+      --color-#{$prefix}-#{$color-name}: var(--gruvbox-color-#{$color-name});
+      --color-#{$prefix}-#{$color-name}-alt: var(--gruvbox-color-#{$color-name}-alt);
+    }
+  }
+}
+
+@layer base {
+  :root {
+    @include createThemePalette ("light");
+  }
+
+  .dark {
+    @include createThemePalette ("dark");
+  }
+}
