@@ -13,32 +13,27 @@
     "watch": "sass -I node_modules --no-source-map --watch --update --style=expanded src:./"
   },
   "files": [
-    "./frappe.css",
-    "./macchiato.css",
-    "./mocha.css"
+    "./gruvbox.css"
   ],
   "bugs": {
-    "url": "https://github.com/catppuccin/tailwindcss/issues"
+    "url": "https://github.com/bday-boy/gruvbox-tailwindcss/issues"
   },
-  "homepage": "https://github.com/catppuccin/tailwindcss#readme",
+  "homepage": "https://github.com/bday-boy/gruvbox-tailwindcss",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/catppuccin/tailwindcss.git",
-    "directory": "packages/catppuccin-tailwindcss"
-  },
-  "sponsor": {
-    "url": "https://opencollective.com/catppuccin"
+    "url": "git+https://github.com/bday-boy/gruvbox-tailwindcss.git",
+    "directory": "."
   },
   "keywords": [
+    "gruvbox",
+    "tailwind",
     "pastel-colors",
-    "catppuccin",
     "colors",
     "theme",
     "palette",
     "soothing"
   ],
   "devDependencies": {
-    "@catppuccin/palette": "2.0.0-beta.1",
     "sass": "^1.89.2"
   }
 }

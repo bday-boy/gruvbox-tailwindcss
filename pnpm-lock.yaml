@@ -8,17 +8,11 @@ importers:
 
   .:
     devDependencies:
-      '@catppuccin/palette':
-        specifier: 2.0.0-beta.1
-        version: 2.0.0-beta.1
       sass:
         specifier: ^1.89.2
         version: 1.97.3
 
 packages:
-
-  '@catppuccin/palette@2.0.0-beta.1':
-    resolution: {integrity: sha512-FhTfw1xtM/rOW+COq20J66Ik+YHiRg240A38e2bYOwh8MDh2yZ/8I3S0+dU1brvytEN4tWtZwe340WrsJb9I8g==}
 
   '@parcel/watcher-android-arm64@2.5.6':
     resolution: {integrity: sha512-YQxSS34tPF/6ZG7r/Ih9xy+kP/WwediEUsqmtf0cuCV5TPPKw/PQHRhueUo6JdeFJaqV3pyjm0GdYjZotbRt/A==}
@@ -148,8 +142,6 @@ packages:
     engines: {node: '>=0.10.0'}
 
 snapshots:
-
-  '@catppuccin/palette@2.0.0-beta.1': {}
 
   '@parcel/watcher-android-arm64@2.5.6':
     optional: true
