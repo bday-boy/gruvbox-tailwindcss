@@ -104,21 +104,21 @@ $prefix: 'grv';
   }
 
   $i: 0;
-  @each $color-value in map.get(gruvbox.$palette, $background) {
+  @each $color-value in map.get($palette, $background) {
     --gruvbox-color-bg#{$i}: #{$color-value};
     $i: $i + 1;
   }
 
   $i: 0;
-  @each $color-value in map.get(gruvbox.$palette, $foreground) {
+  @each $color-value in map.get($palette, $foreground) {
     --gruvbox-color-fg#{$i}: #{$color-value};
     $i: $i + 1;
   }
 
-  --gruvbox-color-bg: #{list.nth(map.get(gruvbox.$palette, $background), 1)};
-  --gruvbox-color-fg: #{list.nth(map.get(gruvbox.$palette, $foreground), 2)};
+  --gruvbox-color-bg: #{list.nth(map.get($palette, $background), 1)};
+  --gruvbox-color-fg: #{list.nth(map.get($palette, $foreground), 2)};
 
-  @each $color-name, $color-variants in gruvbox.$palette {
+  @each $color-name, $color-variants in $palette {
     @if (isColor($color-name)) {
       --gruvbox-color-#{$color-name}-bright: #{list.nth($color-variants, 1)};
       --gruvbox-color-#{$color-name}: #{list.nth($color-variants, 2)};
@@ -139,7 +139,7 @@ $prefix: 'grv';
   --color-#{$prefix}-base: var(--gruvbox-color-bg);
   --color-#{$prefix}-text: var(--gruvbox-color-fg);
 
-  @each $color-name in map.keys(gruvbox.$palette) {
+  @each $color-name in map.keys($palette) {
     @if (isColor($color-name)) {
       --color-#{$prefix}-#{$color-name}-bright: var(--gruvbox-color-#{$color-name}-bright);
       --color-#{$prefix}-#{$color-name}: var(--gruvbox-color-#{$color-name});
