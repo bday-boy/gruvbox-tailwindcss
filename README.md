@@ -1,6 +1,13 @@
 # Gruvbox for [TailwindCSS](https://github.com/tailwindlabs/tailwindcss)
 
-A [Gruvbox](https://github.com/morhetz/gruvbox) color palette for use with Tailwind CSS.
+A [Gruvbox](https://github.com/morhetz/gruvbox) color palette for use with
+Tailwind CSS.
+
+Big thank you to the creators and maintainers of the
+[Catppuccin for TailwindCSS](https://github.com/catppuccin/tailwindcss)
+repository, which I blatantly ripped the SASS code from to make this theme. I
+don't actually know SASS at all, so they saved me the time it would've taken
+to learn it from scratch.
 
 ## Usage
 
