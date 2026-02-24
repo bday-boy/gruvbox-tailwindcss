@@ -1,13 +1,8 @@
 # Gruvbox for [TailwindCSS](https://github.com/tailwindlabs/tailwindcss)
 
-A [Gruvbox](https://github.com/morhetz/gruvbox) color palette for use with
-Tailwind CSS.
+A [Gruvbox](https://github.com/morhetz/gruvbox) color palette for use with Tailwind CSS.
 
-Big thank you to the creators and maintainers of the
-[Catppuccin for TailwindCSS](https://github.com/catppuccin/tailwindcss)
-repository, which I blatantly ripped the SASS code from to make this theme. I
-don't actually know SASS at all, so they saved me the time it would've taken
-to learn it from scratch.
+Big thank you to the creators and maintainers of the [Catppuccin for TailwindCSS](https://github.com/catppuccin/tailwindcss) repository, which I blatantly ripped the SASS code from to make this theme. I don't actually know SASS at all, so they saved me the time it would've taken to learn it from scratch.
 
 ## Usage
 
@@ -33,11 +28,11 @@ to learn it from scratch.
   </button>
 
   <!-- 
-  Flavour variants are predefined (`latte`, `frappe`, `macchiato`, and `mocha`)
-  which allows you to force specific flavours and support custom theme switchers.
+    You can use Tailwind's manual dark-mode toggle
+    https://tailwindcss.com/docs/dark-mode#toggling-dark-mode-manually
   -->
   <div class="dark">
-    <p class="bg-grv-base text-grv-text">Hello from dark mode!</p>
+    <p class="bg-grv-base text-grv-text dark:text-grv-purple">Hello from dark mode!</p>
   </div>
 </body>
 ```
