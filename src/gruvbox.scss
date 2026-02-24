@@ -68,24 +68,6 @@ $palette: (
 
 $prefix: 'grv';
 
-// Safely gets a specific color value from the palette.
-@function get-color($color, $index: 1) {
-  $base: map.get($palette, $color);
-  @if ($base == null) {
-    @error "#{$color} is not in the palette.";
-  }
-
-  @if ($color =="light" or $color =="dark") and ($index < 1 or $index > 5) {
-    @error "#{$color} '#{$index}' is invalid. Must be between 1 and 5.";
-  }
-
-  @if $index < 1 or $index >3 {
-    @error "#{$color} '#{$index}' is invalid. Must be between 1 and 3.";
-  }
-
-  @return list.nth($base, $index);
-}
-
 @function isColor($color-name) {
   $shades: (
     "dark",
@@ -160,5 +142,5 @@ $prefix: 'grv';
 
 // This custom variant is needed for this theme because I designed it for a
 // website where the theme can be toggled, but Tailwind's default behavior is
-// for force light/dark mode based on the `prefers-color-scheme` media query.
+// to force light/dark mode based on the `prefers-color-scheme` media query.
 @custom-variant dark (&:where(.dark, .dark *));
