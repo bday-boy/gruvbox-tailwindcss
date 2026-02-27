@@ -1,4 +1,5 @@
 @theme inline {
+  --color-grv-bg-soft: var(--gruvbox-color-bg-soft);
   --color-grv-bg-hard: var(--gruvbox-color-bg-hard);
   --color-grv-bg0: var(--gruvbox-color-bg0);
   --color-grv-bg1: var(--gruvbox-color-bg1);
@@ -39,12 +40,13 @@
 }
 @layer base {
   :root {
+    --gruvbox-color-bg-soft: #f2e5bc;
+    --gruvbox-color-bg-hard: #f9f5d7;
     --gruvbox-color-bg0: #fbf1c7;
     --gruvbox-color-bg1: #ebdbb2;
     --gruvbox-color-bg2: #d5c4a1;
     --gruvbox-color-bg3: #bdae93;
     --gruvbox-color-bg4: #a89984;
-    --gruvbox-color-bg-hard: #f9f5d7;
     --gruvbox-color-fg0: #282828;
     --gruvbox-color-fg1: #3c3836;
     --gruvbox-color-fg2: #504945;
@@ -78,12 +80,13 @@
     --gruvbox-color-purple-faded: #8f3f71;
   }
   .dark {
+    --gruvbox-color-bg-soft: #32302f;
+    --gruvbox-color-bg-hard: #1d2021;
     --gruvbox-color-bg0: #282828;
     --gruvbox-color-bg1: #3c3836;
     --gruvbox-color-bg2: #504945;
     --gruvbox-color-bg3: #665c54;
     --gruvbox-color-bg4: #7c6f64;
-    --gruvbox-color-bg-hard: #1d2021;
     --gruvbox-color-fg0: #fbf1c7;
     --gruvbox-color-fg1: #ebdbb2;
     --gruvbox-color-fg2: #d5c4a1;
