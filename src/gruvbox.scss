@@ -6,13 +6,14 @@
 // https://github.com/morhetz/gruvbox?tab=readme-ov-file#palette
 $palette: (
   // The dark and light colors are used for background/foreground depending
-  // on the current theme.
+  // on the current theme. Hard and soft are not available as options.
   "dark": (
     #282828,
     #3c3836,
     #504945,
     #665c54,
-    #7c6f64
+    #7c6f64,
+    #1d2021, // This is the bg0 color of Dark-mode Gruvbox Hard
   ),
   "light": (
     #fbf1c7,
@@ -20,6 +21,7 @@ $palette: (
     #d5c4a1,
     #bdae93,
     #a89984,
+    #f9f5d7, // This is the bg0 color of Light-mode Gruvbox Hard
   ),
   // Each color has 3 variants: bright, neutral, and faded.
   // For a dark theme, neutral and bright are used, and for a light theme,
@@ -87,13 +89,19 @@ $prefix: 'grv';
 
   $i: 0;
   @each $color-value in map.get($palette, $background) {
-    --gruvbox-color-bg#{$i}: #{$color-value};
+    @if $i == 5 {
+      --gruvbox-color-bg-hard: #{$color-value};
+    } @else {
+      --gruvbox-color-bg#{$i}: #{$color-value};
+    }
     $i: $i + 1;
   }
 
   $i: 0;
   @each $color-value in map.get($palette, $foreground) {
-    --gruvbox-color-fg#{$i}: #{$color-value};
+    @if $i < 5 {
+      --gruvbox-color-fg#{$i}: #{$color-value};
+    }
     $i: $i + 1;
   }
 
@@ -110,6 +118,7 @@ $prefix: 'grv';
 }
 
 @theme inline {
+  --color-#{$prefix}-bg-hard: var(--gruvbox-color-bg-hard);
   @for $i from 0 through 4 {
     --color-#{$prefix}-bg#{$i}: var(--gruvbox-color-bg#{$i});
   }
