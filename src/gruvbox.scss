@@ -2,27 +2,33 @@
 @use 'sass:list';
 @use 'sass:map';
 
-// These colors are pulled from the palette provided on the gruvbox repo:
+// The colors for $themes and $palette are pulled from the palette provided on
+// the gruvbox repo:
 // https://github.com/morhetz/gruvbox?tab=readme-ov-file#palette
-$palette: (
+$themes: (
   // The dark and light colors are used for background/foreground depending
-  // on the current theme. Hard and soft are not available as options.
-  "dark": (
+  // on the current theme.
+  "black": (
     #282828,
     #3c3836,
     #504945,
     #665c54,
     #7c6f64,
-    #1d2021, // This is the bg0 color of Dark-mode Gruvbox Hard
   ),
-  "light": (
+  "white": (
     #fbf1c7,
     #ebdbb2,
     #d5c4a1,
     #bdae93,
     #a89984,
-    #f9f5d7, // This is the bg0 color of Light-mode Gruvbox Hard
   ),
+  "dark_soft": #32302f, // This is the bg0 color of Dark-mode Gruvbox Soft
+  "light_soft": #f2e5bc, // This is the bg0 color of Light-mode Gruvbox Soft
+  "dark_hard": #1d2021, // This is the bg0 color of Dark-mode Gruvbox Hard
+  "light_hard": #f9f5d7, // This is the bg0 color of Light-mode Gruvbox Hard
+);
+
+$palette: (
   // Each color has 3 variants: bright, neutral, and faded.
   // For a dark theme, neutral and bright are used, and for a light theme,
   // neutral and faded are used.
@@ -70,55 +76,47 @@ $palette: (
 
 $prefix: 'grv';
 
-@function isColor($color-name) {
-  $shades: (
-    "dark",
-    "light"
-  );
-  @return list.index($shades, $color-name) == null;
-}
-
 @mixin createThemePalette($theme) {
-  $background: "light";
-  $foreground: "dark";
-
+  $background: null;
+  $foreground: null;
+  
   @if $theme == "dark" {
-    $background: "dark";
-    $foreground: "light";
+    $background: "black";
+    $foreground: "white";
+  } @else {
+    $background: "white";
+    $foreground: "black";
   }
 
+  --gruvbox-color-bg-soft: #{map.get($themes, $theme + '_soft')};
+  --gruvbox-color-bg-hard: #{map.get($themes, $theme + '_hard')};
+
   $i: 0;
-  @each $color-value in map.get($palette, $background) {
-    @if $i == 5 {
-      --gruvbox-color-bg-hard: #{$color-value};
-    } @else {
-      --gruvbox-color-bg#{$i}: #{$color-value};
-    }
+  @each $color-value in map.get($themes, $background) {
+    --gruvbox-color-bg#{$i}: #{$color-value};
     $i: $i + 1;
   }
 
   $i: 0;
-  @each $color-value in map.get($palette, $foreground) {
-    @if $i < 5 {
-      --gruvbox-color-fg#{$i}: #{$color-value};
-    }
+  @each $color-value in map.get($themes, $foreground) {
+    --gruvbox-color-fg#{$i}: #{$color-value};
     $i: $i + 1;
   }
 
-  --gruvbox-color-bg: #{list.nth(map.get($palette, $background), 1)};
-  --gruvbox-color-fg: #{list.nth(map.get($palette, $foreground), 2)};
+  --gruvbox-color-bg: #{list.nth(map.get($themes, $background), 1)};
+  --gruvbox-color-fg: #{list.nth(map.get($themes, $foreground), 2)};
 
   @each $color-name, $color-variants in $palette {
-    @if (isColor($color-name)) {
-      --gruvbox-color-#{$color-name}-bright: #{list.nth($color-variants, 1)};
-      --gruvbox-color-#{$color-name}: #{list.nth($color-variants, 2)};
-      --gruvbox-color-#{$color-name}-faded: #{list.nth($color-variants, 3)};
-    }
+    --gruvbox-color-#{$color-name}-bright: #{list.nth($color-variants, 1)};
+    --gruvbox-color-#{$color-name}: #{list.nth($color-variants, 2)};
+    --gruvbox-color-#{$color-name}-faded: #{list.nth($color-variants, 3)};
   }
 }
 
 @theme inline {
+  --color-#{$prefix}-bg-soft: var(--gruvbox-color-bg-soft);
   --color-#{$prefix}-bg-hard: var(--gruvbox-color-bg-hard);
+  
   @for $i from 0 through 4 {
     --color-#{$prefix}-bg#{$i}: var(--gruvbox-color-bg#{$i});
   }
@@ -131,11 +129,9 @@ $prefix: 'grv';
   --color-#{$prefix}-text: var(--gruvbox-color-fg);
 
   @each $color-name in map.keys($palette) {
-    @if (isColor($color-name)) {
-      --color-#{$prefix}-#{$color-name}-bright: var(--gruvbox-color-#{$color-name}-bright);
-      --color-#{$prefix}-#{$color-name}: var(--gruvbox-color-#{$color-name});
-      --color-#{$prefix}-#{$color-name}-faded: var(--gruvbox-color-#{$color-name}-faded);
-    }
+    --color-#{$prefix}-#{$color-name}-bright: var(--gruvbox-color-#{$color-name}-bright);
+    --color-#{$prefix}-#{$color-name}: var(--gruvbox-color-#{$color-name});
+    --color-#{$prefix}-#{$color-name}-faded: var(--gruvbox-color-#{$color-name}-faded);
   }
 }
 
